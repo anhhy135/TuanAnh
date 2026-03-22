@@ -1,0 +1,79 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class NhanVien {
+private:
+    string maNV;
+    string ten;
+    double luong;
+
+public:
+    NhanVien() {
+        maNV = "";
+        ten = "";
+        luong = 0;
+    }
+    ~NhanVien() {
+    }
+    void setMaNV(string m) {
+        maNV = m;
+    }
+    void setTen(string t) {
+        ten = t;
+    }
+    void setLuong(double l) {
+        luong = l;
+    }
+    string getMaNV() {
+        return maNV;
+    }
+    string getTen() {
+        return ten;
+    }
+    double getLuong() {
+        return luong;
+    }
+    void nhap() {
+        string temp;
+        cout << "Nhap ma NV: ";
+        getline(cin, maNV);
+        cout << "Nhap ten NV: ";
+        getline(cin, ten);
+        cout << "Nhap luong: ";
+        getline(cin, temp);
+        luong = stod(temp);
+    }
+    void hienThi() {
+        cout << "Ma NV: " << maNV << endl;
+        cout << "Ten NV: " << ten << endl;
+        cout << "Luong: " << luong << endl;
+        cout << "Thu nhap nam: " << thuNhapNam() << endl;
+    }
+    double thuNhapNam() {
+        return luong * 12;
+    }
+};
+int main() {
+    string temp;
+    int n;
+
+    cout << "Nhap so nhan vien: ";
+    getline(cin, temp);
+    n = stoi(temp);
+    NhanVien *ds = new NhanVien[n];
+    for (int i = 0; i < n; i++) {
+        cout << "\nNhap nhan vien thu " << i + 1 << endl;
+        ds[i].nhap();
+    }
+    int max = 0;
+    for (int i = 1; i < n; i++) {
+        if (ds[i].getLuong() > ds[max].getLuong()) {
+            max = i;
+        }
+    }
+    cout << "\nNhan vien co luong cao nhat:\n";
+    ds[max].hienThi();
+    delete[] ds;
+    return 0;
+}
