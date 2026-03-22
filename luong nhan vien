@@ -7,7 +7,7 @@ private:
     string maNV;
     string ten;
     double luong;
-
+/12312313
 public:
     NhanVien() {
         maNV = "";
